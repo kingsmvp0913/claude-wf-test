@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_note_t" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="after">
+            <t t-if="doc.note_t">
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <strong>備註T</strong>
+                        <p t-field="doc.note_t"/>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
