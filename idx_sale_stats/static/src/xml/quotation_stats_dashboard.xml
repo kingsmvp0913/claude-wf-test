@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="idx_sale_stats.QuotationStatsDashboard" owl="1">
+        <div class="o_quotation_stats_dashboard p-3">
+            <h2>報價單統計報表</h2>
+            <div class="o_stats_filters d-flex flex-wrap gap-3 mb-3">
+                <div>
+                    <label>日期起</label>
+                    <input type="date" t-model="state.dateFrom" t-on-change="onFilterChange"/>
+                </div>
+                <div>
+                    <label>日期迄</label>
+                    <input type="date" t-model="state.dateTo" t-on-change="onFilterChange"/>
+                </div>
+                <div>
+                    <label>狀態</label>
+                    <select multiple="multiple" t-on-change="onStateChange">
+                        <t t-foreach="stateOptions" t-as="opt" t-key="opt.value">
+                            <option t-att-value="opt.value" t-esc="opt.label"/>
+                        </t>
+                    </select>
+                </div>
+                <div>
+                    <label>客戶</label>
+                    <select multiple="multiple" t-on-change="onPartnerChange">
+                        <t t-foreach="state.partners" t-as="p" t-key="p.id">
+                            <option t-att-value="p.id" t-esc="p.name"/>
+                        </t>
+                    </select>
+                </div>
+                <div class="align-self-end">
+                    <button class="btn btn-primary" t-on-click="onExportPdf">匯出 PDF</button>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>客戶</th>
+                        <th>金額合計</th>
+                        <th>品項數</th>
+                        <th>報價單數</th>
+                        <th>佔比 (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="state.stats" t-as="s" t-key="s.partner_id">
+                        <tr>
+                            <td t-esc="s.partner_name"/>
+                            <td t-esc="s.amount_total.toFixed(2)"/>
+                            <td t-esc="s.item_count"/>
+                            <td t-esc="s.order_count"/>
+                            <td t-esc="s.percentage.toFixed(1)"/>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <div class="o_stats_chart" style="max-width: 480px;">
+                <canvas t-ref="pieChart"/>
+            </div>
+        </div>
+    </t>
+</templates>
