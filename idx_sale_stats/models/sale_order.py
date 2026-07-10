@@ -9,13 +9,12 @@ class SaleOrder(models.Model):
         domain = domain or []
         order_groups = self.read_group(domain, ['amount_total:sum'], ['partner_id'])
         orders = self.search(domain)
-        line_groups = self.env['sale.order.line'].read_group(
-            [('order_id', 'in', orders.ids)], [], ['order_partner_id']
-        )
-        item_count_by_partner = {
-            group['order_partner_id'][0]: group.get('__count', group.get('order_partner_id_count', 0))
-            for group in line_groups if group.get('order_partner_id')
-        }
+        item_count_by_partner = {}
+        for order in orders:
+            partner_id = order.partner_id.id
+            item_count_by_partner[partner_id] = (
+                item_count_by_partner.get(partner_id, 0) + len(order.order_line)
+            )
         total_orders = sum(
             group.get('__count', group.get('partner_id_count', 0)) for group in order_groups
         )
