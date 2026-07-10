@@ -9,6 +9,7 @@
     'assets': {
         'web.assets_tests': [
             'idx_sale_note_t/static/tests/tours/note_t_tour.js',
+            'idx_sale_note_t/static/tests/tours/fake_quotations_tour.js',
         ],
     },
     'license': 'LGPL-3',
