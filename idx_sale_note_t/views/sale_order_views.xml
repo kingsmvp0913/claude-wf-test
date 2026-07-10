@@ -10,4 +10,16 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_quotation_tree_fake_data" model="ir.ui.view">
+        <field name="name">sale.order.quotation.tree.fake.data</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_fake_quotations" type="object"
+                        string="產生測試假資料" display="always" class="btn-secondary"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
