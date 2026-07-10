@@ -15,6 +15,7 @@
         ],
         'web.assets_tests': [
             'idx_sale_stats/static/tests/tours/quotation_stats_tour.js',
+            'idx_sale_stats/static/tests/tours/quotation_stats_filter_tour.js',
         ],
     },
     'license': 'LGPL-3',
