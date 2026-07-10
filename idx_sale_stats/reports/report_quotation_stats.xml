@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_quotation_stats" model="ir.actions.report">
+        <field name="name">報價單統計報表</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">idx_sale_stats.report_quotation_stats_document</field>
+        <field name="report_file">idx_sale_stats.report_quotation_stats_document</field>
+    </record>
+
+    <template id="report_quotation_stats_document">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <h2>報價單統計報表</h2>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>客戶</th>
+                                <th>金額合計</th>
+                                <th>品項數</th>
+                                <th>報價單數</th>
+                                <th>佔比 (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="stats" t-as="s">
+                                <tr>
+                                    <td t-esc="s['partner_name']"/>
+                                    <td t-esc="'%.2f' % s['amount_total']"/>
+                                    <td t-esc="s['item_count']"/>
+                                    <td t-esc="s['order_count']"/>
+                                    <td t-esc="'%.1f' % s['percentage']"/>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
