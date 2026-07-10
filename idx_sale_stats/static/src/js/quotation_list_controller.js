@@ -15,9 +15,9 @@ export class QuotationStatsListController extends ListController {
         await this.actionService.doAction("idx_sale_stats.action_quotation_stats_dashboard");
     }
 }
-QuotationStatsListController.buttonTemplate = "idx_sale_stats.ListView.Buttons";
 
 registry.category("views").add("sale_quotation_stats_list", {
     ...listView,
     Controller: QuotationStatsListController,
+    buttonTemplate: "idx_sale_stats.ListView.Buttons",
 });
