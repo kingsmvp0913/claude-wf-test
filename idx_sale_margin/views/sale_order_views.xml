@@ -5,7 +5,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='amount_untaxed']" position="before">
+            <xpath expr="//field[@name='tax_totals']" position="before">
                 <field name="gross_margin_total" readonly="1"/>
                 <field name="margin_rate" widget="percentage" readonly="1"/>
             </xpath>
