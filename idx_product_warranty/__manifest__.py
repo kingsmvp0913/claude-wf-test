@@ -5,5 +5,10 @@
     'data': [
         'views/product_template_views.xml',
     ],
+    'assets': {
+        'web.assets_tests': [
+            'idx_product_warranty/static/tests/tours/warranty_months_tour.js',
+        ],
+    },
     'license': 'LGPL-3',
 }
